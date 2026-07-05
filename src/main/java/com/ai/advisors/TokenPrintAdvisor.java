@@ -47,6 +47,10 @@ public class TokenPrintAdvisor implements CallAdvisor,StreamAdvisor{
 		
 		this.logger.info("Response:"+chatClientResponse.chatResponse().getResult().getOutput().getText());
 		
+		this.logger.info("Prompt Token:"+ chatClientResponse.chatResponse().getMetadata().getUsage().getPromptTokens());
+		
+		this.logger.info("Completion Token:"+chatClientResponse.chatResponse().getMetadata().getUsage().getCompletionTokens());
+		
 		this.logger.info("Total Token consumed:"+chatClientResponse.chatResponse().getMetadata().getUsage().getTotalTokens());
 		
 		return chatClientResponse;

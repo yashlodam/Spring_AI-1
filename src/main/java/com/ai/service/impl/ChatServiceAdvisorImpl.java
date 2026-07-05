@@ -4,11 +4,11 @@ import java.util.List;
 
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.client.advisor.SafeGuardAdvisor;
-import org.springframework.ai.chat.client.advisor.SimpleLoggerAdvisor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 
+import com.ai.advisors.TokenPrintAdvisor;
 import com.ai.service.ChatServiceAdvisor;
 
 @Service
@@ -31,7 +31,7 @@ public class ChatServiceAdvisorImpl implements ChatServiceAdvisor{
 	    
 		return this.chatClient
 				.prompt()
-				.advisors(new SimpleLoggerAdvisor(),new SafeGuardAdvisor(List.of("games")))
+				.advisors(new TokenPrintAdvisor(),new SafeGuardAdvisor(List.of("games")))
 				.system(systemMessage)
 				.user(user-> user.text(this.userMessage).param("concept", query))
 				.call()

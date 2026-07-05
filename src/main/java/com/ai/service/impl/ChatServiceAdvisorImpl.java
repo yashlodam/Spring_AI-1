@@ -1,11 +1,14 @@
 package com.ai.service.impl;
 
 import org.springframework.ai.chat.client.ChatClient;
+import org.springframework.ai.chat.client.advisor.SimpleLoggerAdvisor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
+import org.springframework.stereotype.Service;
 
 import com.ai.service.ChatServiceAdvisor;
 
+@Service
 public class ChatServiceAdvisorImpl implements ChatServiceAdvisor{
 	
 	
@@ -20,14 +23,14 @@ public class ChatServiceAdvisorImpl implements ChatServiceAdvisor{
 	public ChatServiceAdvisorImpl(ChatClient.Builder builder) {
 		this.chatClient = builder.build();
 	}
-
 	@Override
-	public String chatTemplate(String query) {
+	public String chatTemplates(String query) {
 	    
 		return this.chatClient
 				.prompt()
+				.advisors(new SimpleLoggerAdvisor())
 				.system(systemMessage)
-				.user(user-> user.text(this.userMessage).param("concept", "java programming"))
+				.user(user-> user.text(this.userMessage).param("concept", query))
 				.call()
 				.content()
 				;

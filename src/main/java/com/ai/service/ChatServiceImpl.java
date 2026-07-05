@@ -26,6 +26,9 @@ public class ChatServiceImpl implements ChatService {
 	@Value("classpath:/prompts/user-message.st")
 	private Resource userMessage; 
 	
+	@Value("classpath:/prompts/system-message.st")
+	private Resource systemMessage;
+	
 
 	@Override
 	public String chat(String query) {
@@ -170,17 +173,7 @@ public class ChatServiceImpl implements ChatService {
 	public String fluentChatAPI(String q) {
 
 	    return chatClient.prompt()
-	            .system(system -> system.text("""
-	                    You are a helpful coding assistant.
-	                    You are an expert in Java, Spring Boot, Spring AI, React, SQL, and REST APIs.
-
-	                    Rules:
-	                    - Explain concepts in simple language.
-	                    - Give practical examples.
-	                    - Provide clean code examples.
-	                    - Mention best practices.
-	                    
-	                    """))
+	            .system(system -> system.text(systemMessage))
 	            .user(user -> user.text(userMessage).param("concept", "spring validation"))
 	            .call()
 	            .content();

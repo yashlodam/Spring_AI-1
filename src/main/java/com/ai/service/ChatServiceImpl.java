@@ -174,7 +174,7 @@ public class ChatServiceImpl implements ChatService {
 	                    - Give practical examples.
 	                    - Provide clean code examples.
 	                    - Mention best practices.
-	                    - Keep responses beginner-friendly.
+	                    
 	                    """))
 	            .user(user -> user.text("What is {techName}? tell me also about {techExample}")
 	            		.param("techExample", "spring controller example").param("techName", "Spring boot"))

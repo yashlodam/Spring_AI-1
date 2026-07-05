@@ -7,7 +7,9 @@ import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.prompt.Prompt;
 import org.springframework.ai.chat.prompt.PromptTemplate;
 import org.springframework.ai.chat.prompt.SystemPromptTemplate;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.core.io.Resource;
 
 
 
@@ -20,6 +22,9 @@ public class ChatServiceImpl implements ChatService {
 	public ChatServiceImpl(ChatClient.Builder builder) {
 		this.chatClient = builder.build();
 	}
+	
+	@Value("classpath:/prompts/user-message.st")
+	private Resource userMessage; 
 	
 
 	@Override
@@ -176,8 +181,7 @@ public class ChatServiceImpl implements ChatService {
 	                    - Mention best practices.
 	                    
 	                    """))
-	            .user(user -> user.text("What is {techName}? tell me also about {techExample}")
-	            		.param("techExample", "spring controller example").param("techName", "Spring boot"))
+	            .user(user -> user.text(userMessage).param("concept", "spring validation"))
 	            .call()
 	            .content();
 	}

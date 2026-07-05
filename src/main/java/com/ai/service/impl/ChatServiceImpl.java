@@ -1,4 +1,4 @@
-package com.ai.service;
+package com.ai.service.impl;
 
 import java.util.Map;
 
@@ -9,6 +9,9 @@ import org.springframework.ai.chat.prompt.PromptTemplate;
 import org.springframework.ai.chat.prompt.SystemPromptTemplate;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+
+import com.ai.service.ChatService;
+
 import org.springframework.core.io.Resource;
 
 

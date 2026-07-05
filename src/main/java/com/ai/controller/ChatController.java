@@ -24,4 +24,15 @@ public class ChatController {
 		
 		return ResponseEntity.ok(response);
 	}
+	
+	
+	// Advisors concepts
+	
+	@GetMapping("/chat2")
+	public ResponseEntity<String> chats(@RequestParam(required = false) String q){
+		
+		String response = chatService.fluentChatAPI(q);
+		
+		return ResponseEntity.ok(response);
+	}
 }

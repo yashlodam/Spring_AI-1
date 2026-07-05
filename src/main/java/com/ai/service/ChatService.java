@@ -8,4 +8,6 @@ public interface ChatService {
 	String generateProductDescription(String productName);
 	String systemChat(String query);
 	String fluentChatAPI(String q);
+	
+	
 }

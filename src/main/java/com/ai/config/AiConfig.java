@@ -21,8 +21,7 @@ public class AiConfig {
                         """)
                 .defaultOptions(
                         OpenAiChatOptions.builder()
-                                .temperature(0.3)
-                                .maxTokens(200)
+                                
                 )
                 .build();
     }

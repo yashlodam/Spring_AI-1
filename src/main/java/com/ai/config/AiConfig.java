@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.client.advisor.MessageChatMemoryAdvisor;
+import org.springframework.ai.chat.client.advisor.SimpleLoggerAdvisor;
 import org.springframework.ai.chat.memory.ChatMemory;
 import org.springframework.ai.openai.OpenAiChatOptions;
 import org.springframework.context.annotation.Bean;
@@ -31,7 +32,7 @@ public class AiConfig {
         return builder
                 .defaultAdvisors(
                         memoryAdvisor,
-                        new TokenPrintAdvisor()
+                        new SimpleLoggerAdvisor()
                 )
                 .defaultSystem("""
                         You are a helpful coding assistant.

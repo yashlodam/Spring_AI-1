@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -35,9 +36,13 @@ public class ChatController {
 	// Advisors concepts
 	
 	@GetMapping("/chat2")
-	public ResponseEntity<String> chats(@RequestParam(required = false) String q){
+	public ResponseEntity<String> chats(@RequestParam(required = false) String q,
+			@RequestHeader("userId") String userId
+			){
 		
-		String response = chatServiceAdvisor.chatTemplates(q);
+		System.out.println("User Id "+ userId);
+		
+		String response = chatServiceAdvisor.chatTemplates(q,userId);
 		
 		return ResponseEntity.ok(response);
 	}

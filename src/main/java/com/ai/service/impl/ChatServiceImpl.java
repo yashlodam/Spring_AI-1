@@ -22,12 +22,12 @@ import org.springframework.core.io.Resource;
 public class ChatServiceImpl implements ChatService {
 	
 	
-	private ChatClient chatClient;
-	
-	public ChatServiceImpl(ChatClient.Builder builder) {
-		this.chatClient = builder.build();
-	}
-	
+	 private final ChatClient chatClient;
+
+	    public ChatServiceImpl(ChatClient chatClient) {
+	        this.chatClient = chatClient;
+	    }
+	    
 	@Value("classpath:/prompts/user-message.st")
 	private Resource userMessage; 
 	

@@ -191,7 +191,10 @@ public class ChatServiceImpl implements ChatService {
 		
 		return this.chatClient
 				.prompt()
-				.system(sytem-> sytem.text(systemMessage))
+				.advisors(a -> a.param(
+					    "chat_memory_conversation_id",
+					    "conversation-1"
+					))
 				.user(user-> user.text(userMessage).param("concept", query))
 				.stream()
 				.content();

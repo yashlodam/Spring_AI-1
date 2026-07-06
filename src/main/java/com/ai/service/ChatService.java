@@ -1,5 +1,6 @@
 package com.ai.service;
 
+import reactor.core.publisher.Flux;
 
 public interface ChatService {
 
@@ -9,5 +10,6 @@ public interface ChatService {
 	String systemChat(String query);
 	String fluentChatAPI(String q);
 	
+	Flux<String> streamChat(String query);
 	
 }

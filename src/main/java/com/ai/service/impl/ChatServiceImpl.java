@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 
 import com.ai.service.ChatService;
 
+import reactor.core.publisher.Flux;
+
 import org.springframework.core.io.Resource;
 
 
@@ -180,6 +182,20 @@ public class ChatServiceImpl implements ChatService {
 	            .user(user -> user.text(userMessage).param("concept", "spring validation"))
 	            .call()
 	            .content();
+	}
+
+
+	@Override
+	public Flux<String> streamChat(String query) {
+		
+		
+		return this.chatClient
+				.prompt()
+				.system(sytem-> sytem.text(systemMessage))
+				.user(user-> user.text(userMessage).param("concept", query))
+				.stream()
+				.content();
+				
 	}
 
 

@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ai.service.ChatService;
 import com.ai.service.ChatServiceAdvisor;
 
+import reactor.core.publisher.Flux;
+
 @RestController
 public class ChatController {
 
@@ -39,4 +41,20 @@ public class ChatController {
 		
 		return ResponseEntity.ok(response);
 	}
+	
+	// Get data in chunks
+	
+	@GetMapping("/stream-chat")
+	public ResponseEntity<Flux<String>> streamChat(@RequestParam("q") String query){
+		
+		
+		return ResponseEntity.ok(this.chatService.streamChat(query));
+		
+	}
+	
+	
+	
+	
+	
+	
 }

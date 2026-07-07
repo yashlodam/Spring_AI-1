@@ -1,1 +1,1 @@
-Explain {concept}.
+{concept}.
